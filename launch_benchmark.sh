@@ -66,9 +66,7 @@ function generate_core {
         fi
 	OOB_EXEC_HEADER+=" ${OOB_EXTRA_HEADER} "
         printf " ${OOB_EXEC_HEADER} \
-	    python LLaMA2.py \
-		--num_iter ${num_iter} --num_warmup 3 \
-		--precision ${precision} \
+	    python train.py --dataset /home2/tensorflow-broad-product/oob_tf_models/couplet \
                 ${addtion_options} \
         > ${log_file} 2>&1 &  \n" |tee -a ${excute_cmd_file}
     done
