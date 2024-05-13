@@ -40,6 +40,10 @@ function main {
             echo -e "\n\n\n\n Running..."
             #cat ${excute_cmd_file} |column -t > ${excute_cmd_file}.tmp
             #mv ${excute_cmd_file}.tmp ${excute_cmd_file}
+            if [[ ${precision} == "bfloat16" ]];then
+                export ITEX_AUTO_MIXED_PRECISION=1 
+                export ITEX_AUTO_MIXED_PRECISION_DATA_TYPE=BFLOAT16
+            fi
             source ${excute_cmd_file}
             echo -e "Finished.\n\n\n\n"
             # collect launch result
@@ -65,7 +69,7 @@ function generate_core {
         elif [ "${device}" == "xpu" ];then
 	        OOB_EXEC_HEADER=" ZE_AFFINITY_MASK=${i} "
         fi
-	OOB_EXEC_HEADER+=" ${OOB_EXTRA_HEADER} "
+	    OOB_EXEC_HEADER+=" ${OOB_EXTRA_HEADER} "
         printf " ${OOB_EXEC_HEADER} \
 	    python train.py --dataset /home2/tensorflow-broad-product/oob_tf_models/couplet \
                 ${addtion_options} \
