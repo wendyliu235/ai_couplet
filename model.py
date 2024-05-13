@@ -281,6 +281,8 @@ class Model():
                                                eval_loss / steps_per_epoch_eval))
 
             print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
+            throughput =  batch / (time.time() - start)
+            print("This is for benchmark framework parse log training Throughput: %.3f sec." % throughput)
 
         log_file.close()
 
