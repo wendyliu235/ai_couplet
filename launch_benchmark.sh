@@ -11,6 +11,7 @@ function main {
     # requirements
     pip install Gensim  #4.1.2
     pip install Scikit-Learn  #0.24.2
+    pip install scipy==1.10.1
 
     cp oob-common/hooks.py .
     # if multiple use 'xxx,xxx,xxx'
